@@ -1,0 +1,882 @@
+/* =========================================================
+   PROFILE PAGE
+========================================================= */
+
+.profile-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.profile-title-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-title-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.profile-header h1 {
+  margin: 0;
+  color: #172554;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.profile-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.edit-profile-button,
+.save-profile-button,
+.cancel-profile-button {
+  border: none;
+  cursor: pointer;
+  border-radius: 9px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.edit-profile-button {
+  background: #2563eb;
+  color: white;
+}
+
+.edit-profile-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.profile-action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-profile-button {
+  background: #2563eb;
+  color: white;
+}
+
+.save-profile-button:hover {
+  background: #1d4ed8;
+}
+
+.cancel-profile-button {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.cancel-profile-button:hover {
+  background: #cbd5e1;
+}
+
+
+/* =========================================================
+   MAIN PROFILE LAYOUT
+========================================================= */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.7fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.profile-card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.06);
+  border: 1px solid #eef2f7;
+}
+
+
+/* =========================================================
+   MAIN PROFILE CARD
+========================================================= */
+
+.profile-main-card {
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 36px;
+  font-weight: 700;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.profile-main-card h2 {
+  color: #172554;
+  margin: 5px 0;
+  font-size: 23px;
+}
+
+.profile-role {
+  color: #64748b;
+  margin: 0;
+  font-size: 14px;
+}
+
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 12px;
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: #ecfdf5;
+  color: #047857;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.profile-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 25px 0;
+}
+
+.profile-item {
+  text-align: left;
+  margin: 19px 0;
+}
+
+.profile-item span {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.profile-item strong {
+  display: block;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 25px;
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+
+  font-size: 21px;
+}
+
+.career-icon {
+  background: #fef3c7;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #172554;
+  font-size: 20px;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PERSONAL DETAILS
+========================================================= */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-field label,
+.career-field label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.detail-value {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 13px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  color: #334155;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.detail-field input,
+.detail-field select,
+.career-field select {
+  width: 100%;
+  min-height: 42px;
+
+  padding: 10px 13px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 9px;
+
+  background: white;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.detail-field input:focus,
+.detail-field select:focus,
+.career-field select:focus {
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   CAREER GOAL
+========================================================= */
+
+.career-goal-card {
+  margin-bottom: 25px;
+}
+
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.career-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.career-value {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 12px 15px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   BOTTOM GRID
+========================================================= */
+
+.profile-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-container {
+  margin-top: 5px;
+}
+
+.profile-skill {
+  margin: 24px 0;
+}
+
+.skill-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 9px;
+}
+
+.skill-name-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-name {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.skill-status {
+  padding: 4px 8px;
+  border-radius: 12px;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.skill-status.strong {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.skill-status.good {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.skill-status.improvement {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.skill-top-row > strong {
+  color: #2563eb;
+  font-size: 14px;
+}
+
+.profile-skill-bar {
+  height: 9px;
+
+  background: #e2e8f0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.profile-skill-bar div {
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  border-radius: 10px;
+
+  transition: width 0.5s ease;
+}
+
+
+/* =========================================================
+   RESUME
+========================================================= */
+
+.resume-card {
+  min-height: 100%;
+}
+
+.resume-upload-box {
+  min-height: 180px;
+
+  border: 2px dashed #cbd5e1;
+
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  background: #f8fafc;
+}
+
+.resume-upload-box:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.upload-icon {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background: #dbeafe;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+
+  margin-bottom: 12px;
+}
+
+.resume-upload-box strong {
+  color: #334155;
+  font-size: 14px;
+}
+
+.resume-upload-box span {
+  margin-top: 6px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   UPLOADED RESUME
+========================================================= */
+
+.uploaded-resume {
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+}
+
+.resume-file-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #fee2e2;
+
+  font-size: 21px;
+}
+
+.resume-file-info {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.resume-file-info strong {
+  color: #334155;
+  font-size: 13px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resume-file-info span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.replace-resume-button {
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.resume-note {
+  margin-top: 18px;
+
+  padding: 12px;
+
+  border-radius: 9px;
+
+  background: #f8fafc;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PROFILE COMPLETION
+========================================================= */
+
+.profile-completion {
+  margin-bottom: 30px;
+}
+
+.completion-chart-section {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+
+/* ================= DONUT CHART ================= */
+
+.completion-pie {
+  width: 150px;
+  height: 150px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+
+/* White center creates donut effect */
+
+.completion-pie-inner {
+  width: 112px;
+  height: 112px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.completion-pie-inner strong {
+  color: #172554;
+
+  font-size: 28px;
+
+  font-weight: 700;
+}
+
+.completion-pie-inner span {
+  margin-top: 2px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+
+/* ================= COMPLETION INFO ================= */
+
+.completion-info {
+  flex: 1;
+}
+
+.completion-title {
+  color: #172554;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+.profile-completion p {
+  max-width: 600px;
+
+  margin: 8px 0 18px;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* ================= LEGEND ================= */
+
+.completion-legend {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.legend-item strong {
+  color: #334155;
+
+  font-size: 12px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+}
+
+.legend-dot.completed {
+  background: #2563eb;
+}
+
+.legend-dot.remaining {
+  background: #e2e8f0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .completion-chart-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .completion-info {
+    width: 100%;
+  }
+
+  .completion-legend {
+    justify-content: center;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .profile-page {
+    padding: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .profile-action-buttons {
+    width: 100%;
+  }
+
+  .profile-action-buttons button {
+    flex: 1;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .profile-page {
+    padding: 15px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+
+  .profile-header h1 {
+    font-size: 25px;
+  }
+
+  .profile-title-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .profile-title-row {
+    align-items: flex-start;
+  }
+
+  .profile-action-buttons {
+    flex-direction: column;
+  }
+
+  .uploaded-resume {
+    flex-wrap: wrap;
+  }
+
+  .replace-resume-button {
+    width: 100%;
+    text-align: center;
+  }
+
+}

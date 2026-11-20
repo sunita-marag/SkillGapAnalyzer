@@ -1,0 +1,436 @@
+/* =========================================
+   SKILL GAP PAGE
+========================================= */
+
+.gap-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.gap-header {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.gap-label {
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.gap-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.gap-header p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.refresh-analysis {
+  background: #eef2ff;
+  color: #4f46e5;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.gap-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.summary-card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.summary-card span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.summary-card small {
+  color: #16a34a;
+}
+
+/* =========================================
+   INFORMATION BOX
+========================================= */
+
+.analysis-info {
+  background: #eef2ff;
+  border: 1px solid #dddfff;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.info-icon {
+  width: 35px;
+  height: 35px;
+  background: #6366f1;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.analysis-info strong {
+  color: #3730a3;
+}
+
+.analysis-info p {
+  color: #4b5563;
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+/* =========================================
+   SKILLS
+========================================= */
+
+.skills-panel {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.skills-panel h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.panel-description {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.skill-item {
+  margin-bottom: 28px;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 9px;
+}
+
+.skill-name strong {
+  display: block;
+}
+
+.skill-name > span {
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.level-text {
+  display: block;
+  margin-top: 5px;
+  color: #6b7280 !important;
+  font-size: 12px;
+  font-weight: normal !important;
+}
+
+/* =========================================
+   SKILL BAR
+========================================= */
+
+.skill-bar {
+  height: 11px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  position: relative;
+  overflow: visible;
+}
+
+.skill-progress {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.skill-progress.strong {
+  background: #22c55e;
+}
+
+.skill-progress.developing {
+  background: #f59e0b;
+}
+
+.skill-progress.needs-improvement {
+  background: #ef4444;
+}
+
+.skill-target {
+  position: absolute;
+  top: -5px;
+  width: 3px;
+  height: 21px;
+  background: #172033;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.skill-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.skill-bottom small {
+  color: #6b7280;
+}
+
+.skill-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.skill-status.strong {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.skill-status.developing {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.skill-status.needs-improvement {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =========================================
+   PRIORITY AREAS
+========================================= */
+
+.priority-panel {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.priority-panel h2 {
+  margin: 7px 0;
+}
+
+.priority-panel p {
+  color: #6b7280;
+}
+
+.priority-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.priority-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+.priority-number {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #4f46e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.priority-content {
+  flex: 1;
+}
+
+.priority-content strong {
+  display: block;
+}
+
+.priority-content span {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.priority-gap {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* =========================================
+   RECOMMENDATION
+========================================= */
+
+.recommendation-card {
+  background: #111827;
+  color: white;
+  border-radius: 18px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.recommendation-icon {
+  width: 55px;
+  height: 55px;
+  background: #312e81;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.recommendation-card h2 {
+  margin: 0 0 10px;
+}
+
+.recommendation-card p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.recommendation-card button {
+  border: none;
+  background: white;
+  color: #4f46e5;
+  padding: 11px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.gap-empty {
+  background: white;
+  border-radius: 20px;
+  padding: 70px 30px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: #eef2ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.gap-empty h1 {
+  margin-bottom: 10px;
+}
+
+.gap-empty p {
+  color: #6b7280;
+  max-width: 550px;
+  margin: 0 auto 25px;
+  line-height: 1.6;
+}
+
+.gap-empty button {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .gap-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .gap-page {
+    padding: 20px;
+  }
+
+  .gap-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .gap-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .recommendation-card {
+    flex-direction: column;
+  }
+}

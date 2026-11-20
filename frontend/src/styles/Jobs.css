@@ -1,0 +1,481 @@
+/* =========================================
+   JOBS PAGE
+========================================= */
+
+.jobs-page {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.jobs-header {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.jobs-label {
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.jobs-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.jobs-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.jobs-count {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* =========================================
+   STUDENT SKILLS
+========================================= */
+
+.student-skills-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+}
+
+.student-skills-card h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.student-skills-card p {
+  margin: 0 0 16px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.student-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.student-skills span {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.jobs-controls {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  padding: 0 12px;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px 5px;
+  font-size: 13px;
+}
+
+.jobs-controls select {
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  padding: 0 12px;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  outline: none;
+}
+
+/* =========================================
+   SECTION
+========================================= */
+
+.jobs-section {
+  width: 100%;
+}
+
+.section-heading {
+  margin-bottom: 15px;
+}
+
+.section-heading h2 {
+  margin: 0 0 5px;
+  font-size: 21px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* =========================================
+   JOB LIST
+========================================= */
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================================
+   JOB CARD
+========================================= */
+
+.job-card {
+  background: #ffffff;
+  border-radius: 17px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.job-card:hover {
+  border-color: #dfe3ff;
+  box-shadow: 0 8px 25px rgba(30, 41, 59, 0.06);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   JOB LOGO
+========================================= */
+
+.job-logo {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  background: #eef2ff;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+/* =========================================
+   JOB CONTENT
+========================================= */
+
+.job-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.job-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.job-top h2 {
+  margin: 0 0 5px;
+  font-size: 19px;
+}
+
+.company {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =========================================
+   MATCH
+========================================= */
+
+.match {
+  height: fit-content;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.match.high {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.match.medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.match.low {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =========================================
+   JOB DETAILS
+========================================= */
+
+.job-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 16px 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.job-description {
+  margin: 0 0 15px;
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   SKILLS
+========================================= */
+
+.job-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.skill.matched {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.job-bottom {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.match-info {
+  flex: 1;
+  max-width: 350px;
+}
+
+.match-info span {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.progress {
+  width: 100%;
+  height: 7px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+/* =========================================
+   VIEW JOB BUTTON
+========================================= */
+
+.view-job {
+  border: none;
+  background: #4f46e5;
+  color: #ffffff;
+  padding: 10px 17px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.view-job:hover {
+  background: #4338ca;
+}
+
+/* =========================================
+   NO JOBS
+========================================= */
+
+.no-jobs {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.no-jobs-icon {
+  font-size: 40px;
+}
+
+.no-jobs h2 {
+  margin: 15px 0 8px;
+}
+
+.no-jobs p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .jobs-page {
+    padding: 25px;
+  }
+
+  .jobs-controls {
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .jobs-controls select {
+    height: 42px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .jobs-page {
+    padding: 15px;
+  }
+
+  .jobs-header {
+    padding: 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .jobs-header h1 {
+    font-size: 27px;
+  }
+
+  .student-skills-card {
+    padding: 18px;
+  }
+
+  .jobs-controls {
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .jobs-controls select {
+    width: 100%;
+    height: 42px;
+  }
+
+  .job-card {
+    padding: 18px;
+    flex-direction: column;
+  }
+
+  .job-logo {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+  }
+
+  .job-top {
+    flex-direction: column;
+  }
+
+  .match {
+    width: fit-content;
+  }
+
+  .job-details {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .job-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .match-info {
+    max-width: none;
+  }
+
+  .view-job {
+    width: 100%;
+  }
+}

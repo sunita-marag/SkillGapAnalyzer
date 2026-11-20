@@ -1,0 +1,146 @@
+.courses-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+.courses-header {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.courses-header span {
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.courses-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.courses-header p {
+  color: #6b7280;
+}
+
+.courses-header input {
+  width: 260px;
+  padding: 13px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  outline: none;
+}
+
+.course-filters {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.course-filters button {
+  border: 1px solid #e5e7eb;
+  background: white;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.course-filters button.active {
+  background: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.course-card {
+  background: white;
+  padding: 24px;
+  border-radius: 17px;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.course-icon {
+  width: 55px;
+  height: 55px;
+  background: #eef2ff;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.course-rating {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  font-size: 13px;
+}
+
+.course-card h2 {
+  font-size: 18px;
+  margin: 20px 0 8px;
+}
+
+.course-provider {
+  color: #6b7280;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.course-card button {
+  width: 100%;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 12px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .courses-page {
+    padding: 20px;
+  }
+
+  .courses-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .courses-header input {
+    width: 100%;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}

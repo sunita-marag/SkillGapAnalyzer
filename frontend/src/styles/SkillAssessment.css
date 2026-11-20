@@ -1,0 +1,336 @@
+/* =========================================
+   SKILL ASSESSMENT
+========================================= */
+
+.assessment-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.assessment-header {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.assessment-label {
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.assessment-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.assessment-header p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.assessment-progress {
+  background: #eef2ff;
+  padding: 20px 25px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.assessment-progress strong {
+  display: block;
+  color: #4f46e5;
+  font-size: 28px;
+}
+
+.assessment-progress span {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress-wrapper {
+  background: white;
+  padding: 22px 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progress-info span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.progress-info strong {
+  color: #4f46e5;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* =========================================
+   QUESTIONS
+========================================= */
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.question-card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.question-number {
+  color: #6366f1;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.question-card h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.question-skill {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.assessment-option {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+  transition: 0.2s;
+}
+
+.assessment-option:hover {
+  border-color: #6366f1;
+  background: #f8f8ff;
+}
+
+.assessment-option.selected {
+  background: #eef2ff;
+  border-color: #6366f1;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.option-radio {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.selected .option-radio {
+  background: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+.assessment-submit-area {
+  margin-top: 25px;
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assessment-submit-area p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.submit-assessment {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-assessment:disabled {
+  background: #c7c9d9;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   RESULT
+========================================= */
+
+.assessment-result {
+  background: white;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.result-icon {
+  width: 70px;
+  height: 70px;
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.assessment-result h1 {
+  margin: 10px 0;
+}
+
+.result-score {
+  margin: 30px auto;
+  background: #eef2ff;
+  width: 180px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.result-score strong {
+  display: block;
+  font-size: 38px;
+  color: #4f46e5;
+}
+
+.result-score span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.assessment-result p {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.view-gap-button,
+.retake-button {
+  padding: 12px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.view-gap-button {
+  border: none;
+  background: #4f46e5;
+  color: white;
+}
+
+.retake-button {
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+  .assessment-page {
+    padding: 20px;
+  }
+
+  .assessment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .options-container {
+    grid-template-columns: 1fr;
+  }
+
+  .assessment-submit-area {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+}
