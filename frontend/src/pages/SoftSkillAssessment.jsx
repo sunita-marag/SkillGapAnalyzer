@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/SoftSkillAssessment.css";
@@ -9,8 +10,11 @@ function SoftSkillAssessment() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
   const [answers, setAnswers] = useState({});
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [assessmentResult, setAssessmentResult] = useState(null);
 
   const questions = [
     {
@@ -26,7 +30,6 @@ function SoftSkillAssessment() {
         "Extremely confident",
       ],
     },
-
     {
       skill: "Teamwork",
       icon: "🤝",
@@ -40,7 +43,6 @@ function SoftSkillAssessment() {
         "I am excellent at teamwork",
       ],
     },
-
     {
       skill: "Leadership",
       icon: "👑",
@@ -54,7 +56,6 @@ function SoftSkillAssessment() {
         "Extremely comfortable",
       ],
     },
-
     {
       skill: "Problem Solving",
       icon: "🧩",
@@ -68,7 +69,6 @@ function SoftSkillAssessment() {
         "I am highly effective at problem solving",
       ],
     },
-
     {
       skill: "Adaptability",
       icon: "🔄",
@@ -82,7 +82,6 @@ function SoftSkillAssessment() {
         "I adapt very easily",
       ],
     },
-
     {
       skill: "Time Management",
       icon: "⏰",
@@ -100,36 +99,119 @@ function SoftSkillAssessment() {
 
   const question = questions[currentQuestion];
 
+  const progress =
+    ((currentQuestion + 1) / questions.length) * 100;
+
   const handleAnswer = (answer) => {
-    setAnswers({
-      ...answers,
+    setAnswers((previousAnswers) => ({
+      ...previousAnswers,
       [currentQuestion]: answer,
-    });
+    }));
+
+    setError("");
   };
 
   const nextQuestion = () => {
+    if (answers[currentQuestion] === undefined) {
+      setError("Please select an answer before continuing.");
+      return;
+    }
+
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+      setCurrentQuestion((previous) => previous + 1);
+      setError("");
     }
   };
 
   const previousQuestion = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
+      setCurrentQuestion((previous) => previous - 1);
+      setError("");
     }
   };
 
-  const submitAssessment = () => {
-    if (answers[currentQuestion] === undefined) {
-      alert("Please select an answer before submitting.");
+  const submitAssessment = async () => {
+    const allQuestionsAnswered =
+      Object.keys(answers).length === questions.length;
+
+    if (!allQuestionsAnswered) {
+      setError("Please answer all 6 questions before submitting.");
       return;
     }
 
-    alert(
-      "Soft Skills Assessment completed successfully!"
-    );
+    setLoading(true);
+    setError("");
 
-    navigate("/home");
+    try {
+      // Convert selected option text into numeric answers 1–5
+      const numericAnswers = {};
+
+      questions.forEach((item, index) => {
+        const selectedAnswer = answers[index];
+        const selectedOptionIndex =
+          item.options.indexOf(selectedAnswer);
+
+        if (selectedOptionIndex === -1) {
+          throw new Error(
+            `Please select an answer for ${item.skill}.`
+          );
+        }
+
+        numericAnswers[String(index)] =
+          selectedOptionIndex + 1;
+      });
+
+      const response = await fetch(
+        "http://127.0.0.1:8002/api/soft-skills/submit",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            answers: numericAnswers,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.detail || "Assessment submission failed."
+        );
+      }
+
+      if (!data.success || !data.result) {
+        throw new Error(
+          "Assessment was submitted, but no result was returned."
+        );
+      }
+
+      setAssessmentResult(data.result);
+      setCurrentQuestion(questions.length - 1);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (err) {
+      console.error("Soft Skills Assessment Error:", err);
+
+      setError(
+        err.message ||
+          "Backend se connect nahi ho pa raha. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getScoreLabel = (score) => {
+    if (score >= 80) return "Strong";
+    if (score >= 60) return "Good";
+    if (score >= 40) return "Needs Improvement";
+    return "Needs Focus";
   };
 
   const closeSidebar = () => {
@@ -141,16 +223,9 @@ function SoftSkillAssessment() {
     navigate("/");
   };
 
-  const progress =
-    ((currentQuestion + 1) / questions.length) * 100;
-
   return (
     <div className="soft-assessment-page">
-
-      {/* =========================================
-          SIDEBAR OVERLAY
-      ========================================= */}
-
+      {/* SIDEBAR OVERLAY */}
       {sidebarOpen && (
         <div
           className="soft-sidebar-overlay"
@@ -158,19 +233,13 @@ function SoftSkillAssessment() {
         ></div>
       )}
 
-
-      {/* =========================================
-          SIDEBAR
-      ========================================= */}
-
+      {/* SIDEBAR */}
       <aside
         className={`soft-sidebar ${
           sidebarOpen ? "soft-sidebar-open" : ""
         }`}
       >
-
         <div className="soft-sidebar-logo">
-
           <div className="soft-sidebar-logo-icon">
             🎓
           </div>
@@ -179,17 +248,13 @@ function SoftSkillAssessment() {
             <strong>SkillGap</strong>
             <span>Analyzer</span>
           </div>
-
         </div>
-
 
         <div className="soft-sidebar-title">
           MAIN MENU
         </div>
 
-
         <nav className="soft-sidebar-nav">
-
           <Link
             to="/home"
             className="soft-sidebar-link"
@@ -279,17 +344,13 @@ function SoftSkillAssessment() {
             <span>◔</span>
             Progress Tracker
           </Link>
-
         </nav>
-
 
         <div className="soft-sidebar-title">
           ACCOUNT
         </div>
 
-
         <nav className="soft-sidebar-nav">
-
           <Link
             to="/profile"
             className="soft-sidebar-link"
@@ -307,9 +368,7 @@ function SoftSkillAssessment() {
             <span>⚙</span>
             Settings
           </Link>
-
         </nav>
-
 
         <button
           className="soft-sidebar-logout"
@@ -318,30 +377,19 @@ function SoftSkillAssessment() {
           <span>↪</span>
           Logout
         </button>
-
       </aside>
 
-
-      {/* =========================================
-          MAIN
-      ========================================= */}
-
+      {/* MAIN */}
       <main className="soft-assessment-main">
-
-
-        {/* =========================================
-            NAVBAR
-        ========================================= */}
-
+        {/* NAVBAR */}
         <header className="soft-assessment-navbar">
-
           <div className="soft-navbar-left">
-
             <button
               className="soft-hamburger"
               onClick={() =>
                 setSidebarOpen(!sidebarOpen)
               }
+              aria-label="Toggle sidebar"
             >
               <span></span>
               <span></span>
@@ -356,13 +404,14 @@ function SoftSkillAssessment() {
                 placeholder="Search skills, courses, jobs..."
               />
             </div>
-
           </div>
 
-
           <div className="soft-navbar-right">
-
-            <button className="soft-notification">
+            <button
+              className="soft-notification"
+              type="button"
+              aria-label="Notifications"
+            >
               🔔
               <span>3</span>
             </button>
@@ -371,7 +420,6 @@ function SoftSkillAssessment() {
               to="/profile"
               className="soft-profile"
             >
-
               <div className="soft-avatar">
                 {username.charAt(0).toUpperCase()}
               </div>
@@ -380,23 +428,12 @@ function SoftSkillAssessment() {
                 <strong>{username}</strong>
                 <small>CSE Student</small>
               </div>
-
             </Link>
-
           </div>
-
         </header>
 
-
-        {/* =========================================
-            PAGE CONTENT
-        ========================================= */}
-
+        {/* PAGE CONTENT */}
         <div className="soft-assessment-content">
-
-
-          {/* Back */}
-
           <Link
             to="/home"
             className="soft-back-button"
@@ -404,271 +441,347 @@ function SoftSkillAssessment() {
             ← Back to Dashboard
           </Link>
 
-
-          {/* Header */}
-
+          {/* PAGE HEADER */}
           <section className="soft-assessment-header">
-
             <div>
-
               <span className="soft-header-label">
                 PERSONAL DEVELOPMENT
               </span>
 
-              <h1>
-                Soft Skills Assessment
-              </h1>
+              <h1>Soft Skills Assessment</h1>
 
               <p>
                 Assess your interpersonal and professional
                 skills to understand your strengths and
                 identify areas for improvement.
               </p>
-
             </div>
-
 
             <div className="soft-header-icon">
               🧠
             </div>
-
           </section>
 
+          {/* ERROR MESSAGE */}
+          {error && (
+            <p
+              className="soft-error-message"
+              role="alert"
+            >
+              {error}
+            </p>
+          )}
 
-          {/* =========================================
-              PROGRESS
-          ========================================= */}
+          {/* ASSESSMENT RESULT */}
+          {assessmentResult && (
+            <section className="soft-result-card">
+              <div className="soft-result-header">
+                <span className="soft-header-label">
+                  YOUR ASSESSMENT RESULT
+                </span>
 
-          <div className="soft-progress-card">
+                <h1>Assessment Completed! 🎉</h1>
 
-            <div className="soft-progress-top">
+                <p>
+                  Hi {username}, here is your soft skills
+                  self-assessment and personalized
+                  improvement plan.
+                </p>
+              </div>
 
-              <div>
+              <div className="soft-overall-score">
+                <span>Overall Score</span>
+
                 <strong>
-                  Assessment Progress
+                  {assessmentResult.overall_score}/100
                 </strong>
-
-                <span>
-                  Question {currentQuestion + 1} of{" "}
-                  {questions.length}
-                </span>
               </div>
 
-              <strong>
-                {Math.round(progress)}%
-              </strong>
+              <h2>Your Soft Skills</h2>
 
-            </div>
-
-            <div className="soft-progress-bar">
-
-              <div
-                className="soft-progress-fill"
-                style={{
-                  width: `${progress}%`,
-                }}
-              ></div>
-
-            </div>
-
-          </div>
-
-
-          {/* =========================================
-              QUESTION CARD
-          ========================================= */}
-
-          <section className="soft-question-card">
-
-
-            <div className="soft-question-top">
-
-              <div className="soft-skill-icon">
-                {question.icon}
-              </div>
-
-              <div>
-
-                <span>
-                  SOFT SKILL
-                </span>
-
-                <h2>
-                  {question.skill}
-                </h2>
-
-              </div>
-
-            </div>
-
-
-            <div className="soft-question-number">
-              Question {currentQuestion + 1}
-            </div>
-
-
-            <h3 className="soft-question">
-              {question.question}
-            </h3>
-
-
-            <div className="soft-options">
-
-              {question.options.map(
-                (option, index) => (
-
-                  <button
-                    key={option}
-                    className={`soft-option ${
-                      answers[currentQuestion] ===
-                      option
-                        ? "selected"
-                        : ""
-                    }`}
-                    onClick={() =>
-                      handleAnswer(option)
-                    }
+              <div className="soft-result-skills">
+                {Object.entries(
+                  assessmentResult.scores || {}
+                ).map(([skill, score]) => (
+                  <div
+                    className="soft-result-skill"
+                    key={skill}
                   >
+                    <div className="soft-result-skill-top">
+                      <strong>{skill}</strong>
 
-                    <span className="soft-option-number">
-                      {String.fromCharCode(
-                        65 + index
-                      )}
-                    </span>
+                      <span>
+                        {score}/100 · {getScoreLabel(score)}
+                      </span>
+                    </div>
 
-                    <span>
-                      {option}
-                    </span>
+                    <div className="soft-result-bar">
+                      <div
+                        className="soft-result-bar-fill"
+                        style={{
+                          width: `${score}%`,
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-                    <span className="soft-option-check">
-                      {answers[currentQuestion] ===
-                      option
-                        ? "✓"
-                        : ""}
-                    </span>
+              <h2>Your Strengths 💪</h2>
 
-                  </button>
-
-                )
+              {assessmentResult.strong_skills?.length > 0 ? (
+                <ul>
+                  {assessmentResult.strong_skills.map(
+                    (skill) => (
+                      <li key={skill}>{skill}</li>
+                    )
+                  )}
+                </ul>
+              ) : (
+                <p>
+                  Keep practicing consistently. You can
+                  build strengths with regular effort.
+                </p>
               )}
 
-            </div>
+              <h2>Skills to Improve 🎯</h2>
 
+              {assessmentResult.weak_skills?.length > 0 ? (
+                assessmentResult.weak_skills.map(
+                  (skill) => (
+                    <div
+                      className="soft-recommendation"
+                      key={skill}
+                    >
+                      <h3>{skill}</h3>
 
-            {/* =========================================
-                BUTTONS
-            ========================================= */}
+                      <ul>
+                        {(
+                          assessmentResult.recommendations?.[
+                            skill
+                          ] || []
+                        ).map((tip, index) => (
+                          <li key={index}>{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                )
+              ) : (
+                <p>
+                  Great work! Your self-assessment scores
+                  are strong across all six skills.
+                  Keep practicing to maintain them.
+                </p>
+              )}
 
-            <div className="soft-question-actions">
+              <h2>Your 7-Day Improvement Plan 📅</h2>
+
+              <div className="soft-seven-day-plan">
+                {(
+                  assessmentResult.improvement_plan || []
+                ).map((item) => (
+                  <div
+                    className="soft-plan-day"
+                    key={item.day}
+                  >
+                    <strong>Day {item.day}</strong>
+                    <span>{item.skill}</span>
+                    <p>{item.task}</p>
+                  </div>
+                ))}
+              </div>
 
               <button
-                className="soft-previous-button"
-                onClick={previousQuestion}
-                disabled={currentQuestion === 0}
+                className="soft-submit-button"
+                type="button"
+                onClick={() => navigate("/home")}
               >
-                ← Previous
+                Back to Dashboard →
               </button>
+            </section>
+          )}
 
+          {/* QUESTION FORM - HIDE AFTER RESULT */}
+          {!assessmentResult && (
+            <>
+              {/* PROGRESS */}
+              <div className="soft-progress-card">
+                <div className="soft-progress-top">
+                  <div>
+                    <strong>
+                      Assessment Progress
+                    </strong>
 
-              {currentQuestion ===
-              questions.length - 1 ? (
+                    <span>
+                      Question {currentQuestion + 1} of{" "}
+                      {questions.length}
+                    </span>
+                  </div>
 
-                <button
-                  className="soft-submit-button"
-                  onClick={submitAssessment}
-                >
-                  Submit Assessment ✓
-                </button>
+                  <strong>
+                    {Math.round(progress)}%
+                  </strong>
+                </div>
 
-              ) : (
-
-                <button
-                  className="soft-next-button"
-                  onClick={nextQuestion}
-                  disabled={
-                    answers[currentQuestion] ===
-                    undefined
-                  }
-                >
-                  Next Question →
-                </button>
-
-              )}
-
-            </div>
-
-          </section>
-
-
-          {/* =========================================
-              ASSESSMENT INFORMATION
-          ========================================= */}
-
-          <section className="soft-info-grid">
-
-            <div className="soft-info-card">
-
-              <div className="soft-info-icon">
-                🎯
+                <div className="soft-progress-bar">
+                  <div
+                    className="soft-progress-fill"
+                    style={{
+                      width: `${progress}%`,
+                    }}
+                  ></div>
+                </div>
               </div>
 
-              <div>
-                <h3>What will be assessed?</h3>
+              {/* QUESTION CARD */}
+              <section className="soft-question-card">
+                <div className="soft-question-top">
+                  <div className="soft-skill-icon">
+                    {question.icon}
+                  </div>
 
-                <p>
-                  Communication, teamwork, leadership,
-                  problem solving, adaptability and
-                  time management.
-                </p>
-              </div>
+                  <div>
+                    <span>SOFT SKILL</span>
+                    <h2>{question.skill}</h2>
+                  </div>
+                </div>
 
-            </div>
+                <div className="soft-question-number">
+                  Question {currentQuestion + 1}
+                </div>
 
+                <h3 className="soft-question">
+                  {question.question}
+                </h3>
 
-            <div className="soft-info-card">
+                <div className="soft-options">
+                  {question.options.map(
+                    (option, index) => (
+                      <button
+                        key={option}
+                        type="button"
+                        className={`soft-option ${
+                          answers[currentQuestion] ===
+                          option
+                            ? "selected"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          handleAnswer(option)
+                        }
+                      >
+                        <span className="soft-option-number">
+                          {String.fromCharCode(65 + index)}
+                        </span>
 
-              <div className="soft-info-icon">
-                🤖
-              </div>
+                        <span>{option}</span>
 
-              <div>
-                <h3>AI-Powered Insights</h3>
+                        <span className="soft-option-check">
+                          {answers[currentQuestion] ===
+                          option
+                            ? "✓"
+                            : ""}
+                        </span>
+                      </button>
+                    )
+                  )}
+                </div>
 
-                <p>
-                  Your assessment results can be used
-                  to identify soft-skill gaps and create
-                  personalized improvement recommendations.
-                </p>
-              </div>
+                {/* QUESTION BUTTONS */}
+                <div className="soft-question-actions">
+                  <button
+                    className="soft-previous-button"
+                    type="button"
+                    onClick={previousQuestion}
+                    disabled={currentQuestion === 0 || loading}
+                  >
+                    ← Previous
+                  </button>
 
-            </div>
+                  {currentQuestion ===
+                  questions.length - 1 ? (
+                    <button
+                      className="soft-submit-button"
+                      type="button"
+                      onClick={submitAssessment}
+                      disabled={loading}
+                    >
+                      {loading
+                        ? "Submitting..."
+                        : "Submit Assessment ✓"}
+                    </button>
+                  ) : (
+                    <button
+                      className="soft-next-button"
+                      type="button"
+                      onClick={nextQuestion}
+                      disabled={
+                        answers[currentQuestion] ===
+                          undefined || loading
+                      }
+                    >
+                      Next Question →
+                    </button>
+                  )}
+                </div>
+              </section>
 
+              {/* ASSESSMENT INFORMATION */}
+              <section className="soft-info-grid">
+                <div className="soft-info-card">
+                  <div className="soft-info-icon">
+                    🎯
+                  </div>
 
-            <div className="soft-info-card">
+                  <div>
+                    <h3>What will be assessed?</h3>
 
-              <div className="soft-info-icon">
-                📈
-              </div>
+                    <p>
+                      Communication, teamwork, leadership,
+                      problem solving, adaptability and
+                      time management.
+                    </p>
+                  </div>
+                </div>
 
-              <div>
-                <h3>Improve Your Career Readiness</h3>
+                <div className="soft-info-card">
+                  <div className="soft-info-icon">
+                    🤖
+                  </div>
 
-                <p>
-                  Understand your strengths and focus
-                  on the soft skills that can support
-                  your career development.
-                </p>
-              </div>
+                  <div>
+                    <h3>Personalized Insights</h3>
 
-            </div>
+                    <p>
+                      Your assessment results identify
+                      soft-skill areas to focus on and
+                      provide personalized improvement
+                      recommendations.
+                    </p>
+                  </div>
+                </div>
 
-          </section>
+                <div className="soft-info-card">
+                  <div className="soft-info-icon">
+                    📈
+                  </div>
 
+                  <div>
+                    <h3>Improve Your Career Readiness</h3>
 
+                    <p>
+                      Understand your strengths and focus
+                      on soft skills that can support your
+                      career development.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </>
+          )}
         </div>
-
       </main>
-
     </div>
   );
 }
