@@ -17,10 +17,13 @@ SkillGapAnalyzer is designed to evaluate candidate skills against job requiremen
 
 Add the actual technologies used in your project:
 
-- Frontend: [Add your frontend technologies]
-- Backend: [Add your backend technologies]
-- Database: [Add your database]
-- AI Integration: [Add your AI technology]
+## Technology Stack
+
+- **Frontend:** React.js
+- **Backend:** Python FastAPI
+- **AI Integration:** Google Gemini AI
+- **Languages:** JavaScript, Python, CSS, HTML
+- **Database:** Mongodb
 
 ## Project Structure
 
